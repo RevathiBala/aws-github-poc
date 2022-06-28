@@ -9,9 +9,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -22,3 +20,15 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+  deploy:
+     runs-on: ubuntu-latest
+     needs: [build]
+     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v1
+      - name: Deploy to my EC2 instance
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: "ec2-65-1-86-248.ap-south-1.compute.amazonaws.com"
+          REMOTE_USER: "ec2-user"
