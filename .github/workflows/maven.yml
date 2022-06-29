@@ -24,12 +24,12 @@ jobs:
      runs-on: ubuntu-latest
      needs: [build]
      steps:
-      - name: Checkout the code
-        uses: actions/checkout@v1
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: "ec2-65-1-86-248.ap-south-1.compute.amazonaws.com"
-          REMOTE_USER: "ec2-user"
-          TARGET: "/home/ec2-user"
+      - name: Execute SSH commmands on remote server
+        uses: JimCronqvist/action-ssh@master
+        with:
+          hosts: 'ec2-user@ec2-3-110-132-52.ap-south-1.compute.amazonaws.com'
+          privateKey: ${{ secrets.EC2_SSH_KEY }}
+          debug: false
+          command: |
+            ls -lah
+            echo "I am $NAME"
