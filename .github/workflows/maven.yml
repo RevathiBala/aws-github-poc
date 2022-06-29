@@ -19,15 +19,26 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - run: mvn -B package --file pom.xml
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: staging
   deploy:
      runs-on: ubuntu-latest
      needs: [build]
      steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: Package
       - name: ls -a via ssh
         uses: fifsky/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          command: sudo yum install java-1.8.0-openjdk
+          command: |
+            sudo yum -y install java-1.8.0-openjdk
+            cp staging
