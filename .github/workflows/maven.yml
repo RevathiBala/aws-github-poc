@@ -27,9 +27,9 @@ jobs:
       - name: Execute SSH commmands on remote server
         uses: JimCronqvist/action-ssh@master
         with:
-          hosts: 'ec2-user@ec2-3-110-132-52.ap-south-1.compute.amazonaws.com'
+          hosts: 'ec2-user@ec2-3-110-132-52.ap-south-1.compute.amazonaws.com:22'
           privateKey: ${{ secrets.EC2_SSH_KEY }}
-          debug: false
+          debug: true
           command: |
             ls -lah
             echo "I am $NAME"
