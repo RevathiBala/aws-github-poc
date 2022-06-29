@@ -35,11 +35,13 @@ jobs:
         with:
           name: Package
       - name: ls -a via ssh
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          source: staging/*.jar
+          target: "~"
           command: |
             sudo yum -y install java-1.8.0-openjdk
             cp staging/awspoc-0.0.1-SNAPSHOT.jar ~
