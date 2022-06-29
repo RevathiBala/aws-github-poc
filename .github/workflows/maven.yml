@@ -30,4 +30,4 @@ jobs:
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          command: whoami
+          command: sudo yum install java-1.8.0-openjdk
