@@ -44,5 +44,5 @@ jobs:
           target: "~"
           script: |
             sudo yum -y install java-1.8.0-openjdk
-            ls
+            ls -a
             java -version
