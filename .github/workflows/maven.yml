@@ -30,19 +30,28 @@ jobs:
      runs-on: ubuntu-latest
      needs: [build]
      steps:
+      - uses: actions/checkout@master
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
           name: staging
           path: staging
+      - name: Deploy to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+          --recursive \
+          --acl public-read \
+          --region ap-south-1 \
+          staging/*.jar s3://my-poc-revathi
       - name: ls -a via ssh
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: staging/*.jar
-          target: /home/ec2-user
           script: |
             sudo yum -y install java-1.8.0-openjdk
             cd ec2-user
