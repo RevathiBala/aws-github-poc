@@ -35,7 +35,7 @@ jobs:
         with:
           name: staging
           path: staging
-      - run: cat ./staging
+      - run: cat staging
       - name: ls -a via ssh
         uses: appleboy/ssh-action@master
         with:
