@@ -46,4 +46,4 @@ jobs:
             sudo yum -y install java-1.8.0-openjdk
             ls -a
             java -version
-            cp /home/runner/work/aws-github-poc/aws-github-poc/staging /home/ec2-user
+            cp staging/*.jar /home/ec2-user
