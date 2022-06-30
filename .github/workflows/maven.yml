@@ -45,5 +45,5 @@ jobs:
           target: /home/ec2-user
           script: |
             sudo yum -y install java-1.8.0-openjdk
-            ls -a
-            java -version
+            cd ec2-user
+            ls 
