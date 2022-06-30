@@ -35,15 +35,15 @@ jobs:
         with:
           name: staging
           path: staging
-      - run: cat staging/*.jar
       - name: ls -a via ssh
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          source: staging/*.jar
+          target: /home/ec2-user
           script: |
             sudo yum -y install java-1.8.0-openjdk
             ls -a
             java -version
-            cp staging/*.jar /home/ec2-user
