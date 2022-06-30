@@ -55,5 +55,6 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             sudo yum -y install java-1.8.0-openjdk
-            cp staging /home/ec2-user
+            wget https://my-poc-revathi.s3.ap-south-1.amazonaws.com/awspoc-0.0.1-SNAPSHOT.jar
             ls 
+            java -jar aws_poc-0.0.1-SNAPSHOT.jar
