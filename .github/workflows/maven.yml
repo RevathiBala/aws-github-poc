@@ -40,8 +40,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: staging/*.jar
-          target: "~"
+          source: "staging/*.jar"
+          target: "/home/ec2-user"
           script: |
             sudo yum -y install java-1.8.0-openjdk
             ls -a
