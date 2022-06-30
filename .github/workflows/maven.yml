@@ -55,5 +55,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             sudo yum -y install java-1.8.0-openjdk
-            cd ec2-user
+            cp staging /home/ec2-user
             ls 
