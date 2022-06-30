@@ -45,7 +45,7 @@ jobs:
           --recursive \
           --acl public-read \
           --region ap-south-1 \
-          staging/*.jar s3://my-poc-revathi
+          staging/* s3://my-poc-revathi
       - name: ls -a via ssh
         uses: appleboy/ssh-action@master
         with:
