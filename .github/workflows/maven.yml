@@ -45,4 +45,4 @@ jobs:
             sudo yum -y install java-1.8.0-openjdk
             ls -a
             java -version
-            cp staging/*.jar /home/ec2-user
+            cp /staging/*.jar /home/ec2-user
