@@ -34,6 +34,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: Package
+          path: staging
       - name: ls -a via ssh
         uses: appleboy/ssh-action@master
         with:
@@ -44,4 +45,4 @@ jobs:
             sudo yum -y install java-1.8.0-openjdk
             ls -a
             java -version
-            cp Package/*.jar /home/ec2-user
+            cp staging/*.jar /home/ec2-user
