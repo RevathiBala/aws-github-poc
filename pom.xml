@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.aws.poc</groupId>
-	<artifactId>awspoc</artifactId>
+	<artifactId>aws-github-poc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>aws-github-poc</name>
 	<description>POC for AWS</description>
